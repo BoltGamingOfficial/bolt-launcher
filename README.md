@@ -1,39 +1,50 @@
 # Bolt Launcher
 
-**A lightweight, independent Minecraft launcher for Java Edition and Bedrock Edition.**
+**A free, non-commercial Minecraft launcher hobby project for Java Edition and Bedrock Edition.**
 
-Bolt Launcher is being built around a simple idea: make it easier to manage Minecraft installations and instances without making the launcher itself feel like another game.
+I'm building Bolt Launcher because I want one place to manage both Minecraft editions. I also want mod installation to be less of a hassle: find something inside the launcher, check that it fits the selected instance, and install it there without manually moving files around.
 
-[Project website](https://boltgamingofficial.github.io/bolt-launcher/) · [Issues & support](https://github.com/BoltGamingOfficial/bolt-launcher/issues) · [Privacy notice](https://boltgamingofficial.github.io/bolt-launcher/privacy.html) · [API-use policy](https://boltgamingofficial.github.io/bolt-launcher/api-use.html)
+[Project website](https://boltgamingofficial.github.io/bolt-launcher/) · [GitHub Issues](https://github.com/BoltGamingOfficial/bolt-launcher/issues) · [Privacy notice](https://boltgamingofficial.github.io/bolt-launcher/privacy.html) · [API use and creator rights](https://boltgamingofficial.github.io/bolt-launcher/api-use.html)
 
-> **Development status:** Pre-release. Bolt Launcher is actively being developed; this repository currently contains the public project website and project information, not a downloadable release. Features described as planned or in development are not release guarantees.
+> **Status:** Early development. There is no public release download yet. Features below describe the project direction and are not a promise that they are already available.
 
-## Project direction
+## Why I'm building it
 
-- **Java and Bedrock:** one launcher experience for the two Minecraft editions.
-- **Instance management:** keep game versions, configurations and modded setups organised.
-- **Mod discovery:** explore relevant Minecraft content from providers such as Modrinth and CurseForge, with project artwork and version-aware results, subject to each provider's approval, API terms and distribution permissions.
-- **Resource packs and more:** make it easier to find content that matches the selected instance.
-- **Lightweight by design:** the launcher is being developed in Rust, with a focus on keeping overhead low.
-- **No advertising:** an ad-free experience is part of the product direction.
+I wanted a single launcher experience for Java and Bedrock instead of treating them as completely separate setups. I also want players to be able to discover mods and install them into the right instance in a few clicks.
 
-## Current status
+## What I'm aiming for
 
-This is an early-stage project. Java and Bedrock workflows, provider integrations, installation detection, and the user interface are under active development. There is no public release download yet.
+- **Java and Bedrock:** bring both editions into one launcher experience.
+- **Instance management:** keep game versions and separate setups organised.
+- **In-launcher mod discovery:** search provider catalogues and see content that matches the selected Minecraft version and loader.
+- **Install to Instance:** install a permitted download into the selected instance without asking the player to move files manually.
+- **Creator attribution:** show where content comes from, link to original project pages, and respect provider and author distribution settings.
+- **Lightweight:** built in Rust, with a focus on keeping background overhead low.
+- **No ads or paid features planned:** Bolt Launcher is a hobby project, not a business.
 
-CurseForge API access has not been approved or enabled for this project. Any integration will be contingent on Overwolf's review and written permission for the proposed use. See [API use and creator rights](api-use.html) for the intended safeguards and the policy questions that must be resolved first.
+## CurseForge API status
+
+A CurseForge third-party API application was submitted on 31 October 2026. It has **not** been approved yet, and no CurseForge API key has been issued to the project.
+
+The intended flow is for a player to browse CurseForge from inside Bolt Launcher and request installation into a selected Minecraft instance. Bolt will not operate its own mod-hosting service, mirror or re-upload CurseForge files, or bypass author distribution settings. Any integration will only be enabled if Overwolf approves this native-launcher use case and the implementation follows the current API terms.
+
+See [API use and creator rights](api-use.html) for the intended flow and the questions awaiting provider clarification.
+
+## Development status
+
+This repository currently contains the public project website and project information, not a downloadable launcher release. The desktop application and its features are still being developed.
 
 ## Repository
 
-The public project site is served from the root of the `main` branch using GitHub Pages. The repository intentionally uses **one branch: `main`**.
+The project uses **one branch: main**. The website source is in the repository root, with a GitHub Actions workflow prepared for GitHub Pages.
 
 ## Contact
 
-- Bug reports and feature requests: [GitHub Issues](https://github.com/BoltGamingOfficial/bolt-launcher/issues)
-- Project updates and source: [GitHub repository](https://github.com/BoltGamingOfficial/bolt-launcher)
+- Bugs and feature requests: [GitHub Issues](https://github.com/BoltGamingOfficial/bolt-launcher/issues)
+- Source and project updates: [GitHub repository](https://github.com/BoltGamingOfficial/bolt-launcher)
 
-Please do not post passwords, Microsoft tokens, API keys, or other private information in public issues.
+Please don't post passwords, Microsoft tokens, API keys, or other private information in public issues.
 
 ## Third-party names
 
-Minecraft is a trademark of Microsoft. CurseForge is a product of Overwolf. Modrinth is a separate third-party platform. Bolt Launcher is an independent, unofficial project and is not affiliated with, endorsed by, or sponsored by Microsoft, Mojang, Overwolf, CurseForge, or Modrinth.
+Minecraft is a trademark of Microsoft. CurseForge is a product of Overwolf. Modrinth is a separate third-party platform. Bolt Launcher is an independent, unofficial hobby project and is not affiliated with, endorsed by, or sponsored by Microsoft, Mojang, Overwolf, CurseForge, or Modrinth.
