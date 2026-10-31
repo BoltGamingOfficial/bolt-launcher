@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090a0c"><meta name="description" content="How Bolt Launcher plans to use third-party mod discovery APIs while respecting creators and provider terms."><title>API use & creator rights — Bolt Launcher</title><style>
+:root{color-scheme:dark;--bg:#090a0c;--panel:#111318;--panel2:#161920;--line:#272b34;--text:#f4f5f7;--muted:#a3a8b2;--gold:#f5c542;--gold2:#ffdf72;--max:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 500px at 80% -10%,rgba(245,197,66,.11),transparent 60%),var(--bg);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--gold2);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(9,10,12,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);font-weight:850;letter-spacing:.04em}
+.mark{width:30px;height:36px;background:linear-gradient(145deg,var(--gold2),#d99a12);clip-path:polygon(56% 0,100% 0,70% 39%,95% 39%,25% 100%,40% 55%,8% 55%);filter:drop-shadow(0 0 12px rgba(245,197,66,.28))}
+.links{display:flex;gap:24px;align-items:center;color:var(--muted);font-size:14px}
+.links a{color:inherit}.links a:hover,.links a.active{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid rgba(245,197,66,.5);border-radius:10px;background:var(--gold);color:#17130a;font-weight:800;letter-spacing:.01em}
+.btn:hover{background:var(--gold2);text-decoration:none}
+.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}
+.hero{padding:92px 0 72px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--gold2);font-size:12px;letter-spacing:.17em;text-transform:uppercase;font-weight:800}
+.dot{width:7px;height:7px;border-radius:99px;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.04;letter-spacing:-.055em;margin:18px 0 20px;max-width:800px}
+h1 span{color:var(--gold)}
+.lead{font-size:clamp(17px,2vw,20px);line-height:1.6;color:#c0c4cc;max-width:690px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.status{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:var(--muted);font-size:13px;margin-top:25px}
+.mock{margin-top:54px;background:linear-gradient(145deg,#171a20,#0e1014);border:1px solid #343945;border-radius:18px;box-shadow:0 28px 90px rgba(0,0,0,.42);overflow:hidden}
+.mockbar{height:48px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 17px;color:#838a96;font-size:12px}
+.windowdot{width:8px;height:8px;border-radius:100%;background:#444a56}
+.mockbody{display:grid;grid-template-columns:190px 1fr;min-height:260px}
+.sidebar{padding:24px 18px;border-right:1px solid var(--line);color:#9299a5;font-size:13px}
+.sideitem{padding:9px 11px;border-radius:7px;margin:4px 0}
+.sideitem.sel{background:rgba(245,197,66,.12);color:var(--gold2)}
+.preview{padding:28px}
+.previewtop{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.previewtitle{font-size:21px;font-weight:800}
+.pill{border:1px solid #414754;border-radius:99px;padding:5px 10px;color:#b3bac5;font-size:11px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:22px}
+.tile{padding:17px;border:1px solid var(--line);border-radius:12px;background:#13161c;min-height:105px}
+.tile b{display:block;font-size:14px;margin-bottom:5px}
+.tile small{color:var(--muted);font-size:12px}
+.section{padding:64px 0}
+.sectionhead{max-width:720px;margin-bottom:28px}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.12;letter-spacing:-.035em;margin:0 0 13px}
+.sectionhead p,.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.card{padding:23px;background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px}
+.card .num{color:var(--gold);font-weight:900;font-size:12px;letter-spacing:.12em}
+.card h3{margin:12px 0 7px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.note{border:1px solid rgba(245,197,66,.28);background:rgba(245,197,66,.06);padding:20px 22px;border-radius:12px;color:#d6d0bc}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:#878e99;font-size:13px}
+.footerrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footerlinks{display:flex;gap:18px;flex-wrap:wrap}
+.pagehero{padding:66px 0 36px}
+.pagehero h1{font-size:clamp(38px,6vw,58px);margin-bottom:14px}
+.prose{max-width:850px;padding-bottom:70px}
+.prose h2{font-size:25px;margin:35px 0 12px}
+.prose h3{font-size:18px;margin:25px 0 8px}
+.prose p,.prose li{color:#c0c4cc}
+.prose ul{padding-left:22px}
+.prose li{padding:4px 0}
+.prose .callout{border-left:3px solid var(--gold);background:rgba(245,197,66,.06);padding:16px 19px;margin:20px 0;color:#e1dccb}
+.kicker{color:var(--gold2);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:780px){.hero{padding-top:65px}.mockbody{grid-template-columns:1fr}.sidebar{display:none}.cards{grid-template-columns:1fr 1fr}.tiles{grid-template-columns:1fr}.links{gap:13px;font-size:12px}.nav{height:66px}}
+@media(max-width:520px){.wrap{width:min(var(--max),calc(100% - 28px))}.links a:nth-child(2){display:none}.cards{grid-template-columns:1fr}.mock{margin-top:35px}.preview{padding:20px}}
+</style></head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="./"><span class="mark" aria-hidden="true"></span><span>BOLT LAUNCHER</span></a><nav class="links" aria-label="Main navigation"><a href="./">Home</a><a class="active" href="api-use.html">API use</a><a href="privacy.html">Privacy</a><a href="https://github.com/BoltGamingOfficial/bolt-launcher" target="_blank" rel="noopener">GitHub ↗</a></nav></div></header>
+<main class="wrap">
+<section class="pagehero"><div class="kicker">Provider transparency</div><h1>API use &amp; creator rights</h1><p class="lead">Bolt Launcher aims to make it easier to discover compatible Minecraft content without taking control away from the creators and platforms that publish it.</p><div class="status">Integrations are not yet enabled · Approval and terms review required</div></section>
+<article class="prose">
+<div class="callout"><strong>Current status:</strong> Bolt Launcher has not received CurseForge API approval. This page describes the intended product behaviour and the checks that must be completed before the integration is enabled. It is not a claim of partnership or endorsement.</div>
+<h2>1. What Bolt Launcher is building</h2>
+<p>Bolt Launcher is an independent Minecraft launcher being developed in Rust. Its planned content-discovery experience is intended to help a player find mods, resource packs and related content compatible with the Minecraft version and mod loader selected for an instance. Search results may display provider-hosted project thumbnails and link users to the original project pages.</p>
+<p>Provider integrations are optional components of a broader launcher experience. Bolt Launcher is not intended to host mod files, operate a creator-upload platform, moderate provider projects, or replace the providers' own websites and authoring tools.</p>
+<h2>2. Intended request behaviour</h2>
+<ul>
+<li>Requests will be initiated by a user searching, browsing, opening a project, or requesting an install — not by continuous background crawling.</li>
+<li>Search and file queries will be limited to what is needed for the selected game, version and loader. Pagination and request frequency will respect the provider's documented limits.</li>
+<li>Project names, descriptions, authors, artwork and links will remain attributed to their source. Provider-hosted assets will not be copied into a Bolt-operated catalogue or re-hosted by Bolt.</li>
+<li>Bolt Launcher will use the provider's documented download flow where approved. It will not mirror, proxy, repack, or independently redistribute provider files.</li>
+<li>Projects or files marked unavailable, removed, restricted, or not permitted for third-party distribution will not be made installable. The launcher will not bypass bans, removals, access controls or author restrictions.</li>
+<li>No provider API key will be committed to this public repository.</li>
+</ul>
+<h2>3. CurseForge approval and terms review</h2>
+<p>CurseForge API access is subject to an application reviewed by Overwolf and acceptance of its third-party API terms. CurseForge says the review considers the impact on authors' earnings, its servers/CDN, and how third-party distribution obtains author consent.</p>
+<p>Before enabling CurseForge access, Bolt Launcher will obtain approval for the actual native-desktop use case and follow the current API documentation and terms. The published third-party API terms currently include restrictions on saving or caching API-derived data, on transferring or disclosing an API key, and on using the API to build a product or service that competes with CurseForge.</p>
+<div class="callout"><strong>Questions requiring written confirmation before launch:</strong> (1) whether the proposed cross-provider, native Minecraft launcher workflow is permitted under the non-competition restriction; (2) what transient display, thumbnail and local metadata behaviour is allowed under the no-save/no-cache clause; and (3) how a non-transferable API key may be used by a distributed desktop application without disclosing it to end users. Bolt Launcher will not assume these points are permitted or work around the restrictions.</div>
+<p>Until these questions are resolved and access is approved, CurseForge API integration remains disabled. No API key is included in the application, website, source repository or public issue tracker.</p>
+<h2>4. Modrinth and other providers</h2>
+<p>Any Modrinth or future provider integration will be implemented separately and only in accordance with that provider's current API rules, attribution requirements, content distribution permissions and rate limits. Approval from one provider does not imply approval from another.</p>
+<h2>5. Creator rights and trademarks</h2>
+<p>Mods, resource packs, project names, descriptions, logos and artwork belong to their respective authors or rights holders. Bolt Launcher does not claim ownership of third-party content. Users will be directed to the original project pages and applicable creator and provider terms.</p>
+<p>Minecraft is a trademark of Microsoft. CurseForge is a product of Overwolf. Modrinth is an independent platform. Bolt Launcher is not affiliated with, endorsed by, or sponsored by these organisations.</p>
+<h2>6. Official references</h2>
+<ul>
+<li><a href="https://support.curseforge.com/support/solutions/articles/9000208346-about-the-curseforge-api-and-how-to-apply-for-a-key" target="_blank" rel="noopener">CurseForge — About the API and how to apply for a key</a></li>
+<li><a href="https://support.curseforge.com/support/solutions/articles/9000207405-curseforge-3rd-party-api-terms-and-conditions" target="_blank" rel="noopener">CurseForge — Third-party API terms and conditions</a></li>
+<li><a href="https://docs.curseforge.com/rest-api/" target="_blank" rel="noopener">CurseForge — REST API documentation</a></li>
+<li><a href="https://docs.modrinth.com/" target="_blank" rel="noopener">Modrinth — API documentation</a></li>
+</ul>
+<h2>7. Contact</h2>
+<p>For questions about the project or this intended API use, contact the maintainers through <a href="https://github.com/BoltGamingOfficial/bolt-launcher/issues" target="_blank" rel="noopener">GitHub Issues</a>. Do not post API keys or private account information publicly.</p>
+</article>
+</main>
+<footer><div class="wrap footerrow"><div>© 2026 Bolt Launcher</div><div class="footerlinks"><a href="./">Home</a><a href="privacy.html">Privacy</a><a href="https://github.com/BoltGamingOfficial/bolt-launcher" target="_blank" rel="noopener">GitHub ↗</a></div></div></footer>
+</body></html>
